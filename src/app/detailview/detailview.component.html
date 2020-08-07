@@ -1,0 +1,202 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-auto text-center my-5">
+      <div class="form-inline">
+        <img
+          class="img fluid search-img m-3"
+          src="../assets/Icons/Icon feather-search.png"
+          alt="Search"
+          width="30px"
+          height="30px"
+        />
+        <input
+          class="form-control m-3"
+          type="text"
+          name="search"
+          id="search"
+          placeholder="Search for your Faviourite recipies....."
+        />
+      </div>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <div class="col-12 text-left">
+      <a (click)="goBack()"><span class="mx-2">&#8592;</span>Go Back</a>
+    </div>
+  </div>
+  <div class="row my-5" *ngIf="dish">
+    <div class="col-6 text-center">
+      <div class="row">
+        <div class="col-12">
+          <div class="out">
+            <img
+              src="{{ dish.image }}"
+              alt="{{ dish.name }}"
+              class="img-fluid img-wala"
+              width="100%"
+              style="
+                height: 240px;
+                image-rendering: optimizeQuality;
+                border-radius: 10px;
+              "
+            />
+            <div class="playbutton">
+              <img
+                src="../../assets/Icons/Icon ionic-ios-play-circle.png"
+                alt="Play"
+              />
+              <p class="mt-2 text-light">Play Video</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row my-4">
+        <div class="col-12">
+          <h3 class="text-left">Instructions:</h3>
+          <p class="text-left" style="opacity: 0.6;">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Totam
+            laudantium voluptatibus autem reprehenderit harum quibusdam qui?
+            Quo, nesciunt ea sint rerum sunt id illo quidem minima! Ipsam nisi
+            laudantium dolores?
+          </p>
+        </div>
+      </div>
+      <div class="row my-4">
+        <div class="col-12 text-left">
+          <h3>How to Prepare:</h3>
+          <p style="opacity: 0.6;">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Totam
+            laudantium voluptatibus autem reprehenderit harum quibusdam qui.
+          </p>
+          <p style="opacity: 0.6;">
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Non optio
+            nam, magni rerum vitae, laborum sed atque, dolore recusandae impedit
+            exercitationem repudiandae quis tempore id quo! Natus facere aut
+            animi!
+          </p>
+          <p style="opacity: 0.6;">
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Non optio
+            nam, magni rerum vitae, laborum sed atque, dolore recusandae impedit
+            exercitationem repudiandae quis tempore id quo! Natus facere aut
+            animi!
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 text-center">
+      <div class="row">
+        <div class="col-12 text-right">
+          <p
+            class="lead"
+            style="font-variant: small-caps; font-size: 20px; opacity: 0.5;"
+          >
+            Recipe
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 text-right">
+          <h2 class="display-4">{{ dish.name }}</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 text-right">
+          <div>
+            <span class="badge badge-dark mx-3">{{ stars.length }} / 5</span
+            ><span *ngFor="let x of stars"
+              ><img
+                class="px-2"
+                src="../../assets/Icons/Icon awesome-star.png"
+                alt="Star"
+            /></span>
+          </div>
+        </div>
+      </div>
+      <br />
+      <div class="row">
+        <div class="col-12 text-right">
+          <p
+            class="lead"
+            style="font-size: 20px; font-variant: small-caps; opacity: 0.6;"
+          >
+            Description
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 text-right">
+          <p>{{ dish.description }}</p>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-3  py-5 ">
+          <div style="background-color: black; border-radius: 50%; height: 90px; width: 90px;">
+            <h5 class="pt-3 pb-0" style="color: white;">8 </h5>
+            <p style="color: white; font-size: 10px;">Ingredients</p>
+          </div>
+        </div>
+        
+        <div class="col-3  py-5 ">
+          <div style="background-color: black; border-radius: 50%; height: 90px; width: 90px;">
+            <h5 class="pt-3 pb-0" style="color: white;">{{dish.price}}</h5>
+            <p style="color: white; font-size: 10px;">Bucks</p>
+          </div>
+        </div>
+        
+        <div class="col-3  py-5 ">
+        <div style="background-color: black; border-radius: 50%; height: 90px; width: 90px;">
+          <h5 class="pt-3 pb-0" style="color: white;">25 </h5>
+          <p style="color: white; font-size: 10px;">Minutes</p>
+        </div>
+      </div>
+      </div>
+      <br />
+      <div class="row my-4">
+        <div class="col-12 text-right">
+          <h4 style="font-variant: small-caps;">
+            favourite this recipe
+            <img
+              class="mx-3"
+              src="../../assets/Icons/Icon feather-heart.png"
+              alt="unlike"
+              on-click="changeLiked(dish.id)"
+              *ngIf="!dish.liked"
+            />
+            <img
+              class="mx-3"
+              src="../../assets/Icons/Icon feather-heart-color.png"
+              alt="unlike"
+              on-click="changeLiked(dish.id)"
+              *ngIf="dish.liked"
+            />
+          </h4>
+        </div>
+      </div>
+      <br />
+      <hr />
+      <div class="row my-2">
+        <div class="col-12 text-left">
+          <p class="lead mx-3" style="font-variant: small-caps; opacity: 0.6;">
+            add comments
+          </p>
+          <div class="form-group mx-3">
+            <textarea
+              class="form-control"
+              rows="4"
+              placeholder="Type something here ..."
+              style="background-color: white; color: black; max-width: 100%;"
+            ></textarea>
+          </div>
+          <div class="text-center">
+            <button type="button" class="btn btn-dark w-75 py-3">
+              ADD COMMENT
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br />
+  <br />
+  <hr class="hr-text" data-content="YOUR FOOD TASTES YUMMY" />
+</div>

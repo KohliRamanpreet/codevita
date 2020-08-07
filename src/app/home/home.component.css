@@ -1,0 +1,97 @@
+.container {
+  background: transparent;
+}
+
+.search-img {
+  border-radius: 15px;
+  background-color: white !important;
+}
+.wrap{
+  margin: 30px;
+  column-count: 4 ;
+  column-gap: 20px;
+}
+.wrap .item
+{
+  width:100%;
+  padding: 15px;
+ 
+  break-inside: avoid;
+  display: inline-block;
+}
+.card_wrapper {
+  display: grid;
+  padding: 30px 28px;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  grid-gap: 60px;
+  align-items: stretch;
+}
+.form-control {
+  width: 100ex;
+  background-color: transparent;
+}
+
+.box {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card {
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+}
+
+.card-img-caption {
+  border-top-left-radius: calc(0.25rem - 1px);
+  border-top-right-radius: calc(0.25rem - 1px);
+}
+
+.card-img-caption .card-img-top {
+  z-index: 0;
+}
+
+.card-img-caption .card-text {
+  text-align: right;
+  width: 100%;
+  position: absolute;
+  z-index: 1;
+}
+
+.middle {
+  transition: 1s ease;
+  opacity: 0;
+  z-index: -1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.card:hover .middle {
+  opacity: 1;
+  z-index: 1;
+}
+
+.card:hover {
+  transition: 1s ease;
+  background-color: #222 !important;
+  color: black !important;
+}
+
+.card:hover .card-img-caption {
+  z-index: -1;
+  transition: 1s ease-in-out;
+}
+
+.sss {
+  background-color: yellow !important;
+  color: red !important;
+}
+
+.btn {
+  border: 1px solid white;
+}

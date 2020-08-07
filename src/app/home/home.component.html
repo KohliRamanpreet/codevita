@@ -1,0 +1,372 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-auto text-center my-5">
+      <div class="form-inline">
+        <img
+          class="img fluid search-img m-3"
+          src="../assets/Icons/Icon feather-search.png"
+          alt="Search"
+          width="30px"
+          height="30px"
+        />
+        <input
+          class="form-control m-3"
+          type="text"
+          name="search"
+          id="search"
+          on-keyup="filterItem()"
+          [(ngModel)]="search"
+          placeholder="Search for your Faviourite recipies....."
+        />
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <p
+        class="lead text-right"
+        style="font-variant: small-caps; opacity: 0.5; font-size: 20px;"
+      >
+        Category
+      </p>
+    </div>
+  </div>
+  <div class="row mb-5">
+    <div class="col-12 text-right">
+      <h4 class="display-4">Pizza & Noodles</h4>
+    </div>
+  </div>
+  <div class="row my-3" *ngIf="!mainDishes">
+    <div class="col-12 text-center">
+      <div
+        class="spinner-border text-secondary"
+        style="height: 6em; width: 6em;"
+        role="status"
+      >
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+  </div>
+ <div class="container ">
+    <div class="card-columns ">
+        <div  *ngFor="let dish of dishes"  >
+       <div class="card my-3 bg-dark text-light " *ngIf="dish.id % 2 == 0 && dish.id<9 "
+       style="height: 600px; float: right; break-inside: avoid-column;">
+       <div class="card-img-caption">
+        <p class="card-text">
+          <span
+            class="badge badge-dark p-2"
+            style="
+              font-size: 15px;
+              font-variant: small-caps;
+              letter-spacing: 2px;
+            "
+            >{{ dish.category }}</span
+          >
+        </p>
+            <img class="card-img-top img-fluid" style="height:300px" src="{{ dish.image }}" alt="Card image cap">  &nbsp;{{ dish.price }} {{ dish.label }}
+            </div>
+            <div class="card-body" >
+              <div class="row">
+                <div class="col-9">
+                  <h5 class="card-title mb-1" [ngClass]="{ sss: myBool }">
+                    {{ dish.name }}
+                  </h5>
+                  <p class="card-text">
+                    <img  src="../assets/Icons/Icon feather-clock.png" alt="Clock" />
+                    &nbsp;{{ dish.price }} {{ dish.label }}
+                  </p>
+                </div>
+                <div class="col-3">
+                  <img style="color: white;"
+                    src="../assets/Icons/Icon feather-heart.png"
+                    alt="Unlike"
+                    on-click="changeLiked(dish.id)"
+                    *ngIf="!dish.liked"
+                  />
+                  <img
+                    src="../assets/Icons/Icon feather-heart-color.png"
+                    alt="Like"
+                    on-click="changeLiked(dish.id)"
+                    *ngIf="dish.liked"
+                  />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12 text-center">
+                  <p class="card-text">{{ dish.description }}</p>
+                </div>
+              </div>
+            </div>
+            <div class="middle text-center">
+              <button
+                class="btn btn-outline-dark text-light my-2"
+                [routerLink]="['/view', dish.id]"
+              >
+                View More
+              </button>
+              <button
+                class="btn btn-outline-dark text-light my-2"
+                (click)="openDish(dish.id)"
+              >
+                Quick View
+              </button>
+            </div>
+        </div>
+
+        <div class="card  card bg-light text-dark my-3" *ngIf="dish.id % 2 != 0  && dish.id<9"
+        style="height: 400px; float: right; break-inside: avoid-column; ">
+        <div class="card-img-caption">
+          <p class="card-text">
+            <span
+              class="badge badge-dark p-2"
+              style="
+                font-size: 15px;
+                font-variant: small-caps;
+                letter-spacing: 2px;
+              "
+              >{{ dish.category }}</span
+            >
+          </p>
+             <img class="card-img-top img-fluid" style="height: 200px;" src="{{ dish.image }}" alt="Card image cap">  &nbsp;{{ dish.price }} {{ dish.label }}
+            </div>
+             <div class="card-body">
+              <div class="row">
+                <div class="col-9">
+                  <h5 class="card-title mb-1" [ngClass]="{ sss: myBool }">
+                    {{ dish.name }}
+                  </h5>
+                  <p class="card-text">
+                    <img  src="../assets/Icons/Icon feather-clock.png" alt="Clock" />
+                    &nbsp;{{ dish.price }} {{ dish.label }}
+                  </p>
+                </div>
+                <div class="col-3">
+                  <img
+                    src="../assets/Icons/Icon feather-heart.png"
+                    alt="Unlike"
+                    on-click="changeLiked(dish.id)"
+                    *ngIf="!dish.liked"
+                  />
+                  <img
+                    src="../assets/Icons/Icon feather-heart-color.png"
+                    alt="Like"
+                    on-click="changeLiked(dish.id)"
+                    *ngIf="dish.liked"
+                  />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12 text-center">
+                  <p class="card-text">{{ dish.description }}</p>
+                </div>
+              </div>
+             </div>
+             <div class="middle text-center">
+              <button
+                class="btn btn-outline-dark text-light my-2"
+                [routerLink]="['/view', dish.id]"
+              >
+                View More
+              </button>
+              <button
+                class="btn btn-outline-dark text-light my-2"
+                (click)="openDish(dish.id)"
+              >
+                Quick View
+              </button>
+            </div>
+         </div>
+        
+        </div>
+        </div>
+  </div> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="wrap">
+
+  <div class="item " *ngFor="let dish of dishes">
+    <div class="item">
+    <p *ngIf="dish.id%2==0">{{dish.id}} jschds dvbfvgdf vbegv xfgvbdf bbff rfbfb fbrb fdfvdbgf fddfgfdg fdgdfgdfg dfgdfgdfg fdgdfgdfgd fdgdfgdfg dfgdfgdfgdf fdgdfgdfgfggdf
+      fdgdfgfgd fdgdfgdfg jschds dvbfvgdf vbegv xfgvbdf bbff rfbfb fbrb fdfvdbgf fddfgfdg fdgdfgdfg dfgdfgdfg fdgdfgdfgd fdgdfgdfg dfgdfgdfgdf fdgdfgdfgfggdf
+      fdgdfgfgd fdgdfgdfg jschds dvbfvgdf vbegv xfgvbdf bbff rfbfb fbrb fdfvdbgf fddfgfdg fdgdfgdfg dfgdfgdfg fdgdfgdfgd fdgdfgdfg dfgdfgdfgdf fdgdfgdfgfggdf
+      fdgdfgfgd fdgdfgdfg jschds dvbfvgdf vbegv xfgvbdf bbff rfbfb fbrb fdfvdbgf fddfgfdg fdgdfgdfg dfgdfgdfg fdgdfgdfgd fdgdfgdfg dfgdfgdfgdf fdgdfgdfgfggdf
+      fdgdfgfgd fdgdfgdfgjschds dvbfvgdf vbegv xfgvbdf bbff rfbfb fbrb fdfvdbgf fddfgfdg fdgdfgdfg dfgdfgdfg fdgdfgdfgd fdgdfgdfg dfgdfgdfgdf fdgdfgdfgfggdf
+      fdgdfgfgd fdgdfgdfgjschds dvbfvgdf vbegv xfgvbdf bbff rfbfb fbrb fdfvdbgf fddfgfdg fdgdfgdfg dfgdfgdfg fdgdfgdfgd fdgdfgdfg dfgdfgdfgdf fdgdfgdfgfggdf
+      fdgdfgfgd fdgdfgdfgjschds dvbfvgdf vbegv xfgvbdf bbff rfbfb fbrb fdfvdbgf fddfgfdg fdgdfgdfg dfgdfgdfg fdgdfgdfgd fdgdfgdfg dfgdfgdfgdf fdgdfgdfgfggdf
+      fdgdfgfgd fdgdfgdfgjschds dvbfvgdf vbegv xfgvbdf bbff rfbfb fbrb fdfvdbgf fddfgfdg fdgdfgdfg dfgdfgdfg fdgdfgdfgd fdgdfgdfg dfgdfgdfgdf fdgdfgdfgfggdf
+      fdgdfgfgd fdgdfgdfgjschds dvbfvgdf vbegv xfgvbdf bbff rfbfb fbrb fdfvdbgf fddfgfdg fdgdfgdfg dfgdfgdfg fdgdfgdfgd fdgdfgdfg dfgdfgdfgdf fdgdfgdfgfggdf
+      fdgdfgfgd fdgdfgdfg
+    </p>
+ 
+  
+    <p *ngIf="dish.id%2!=0">{} 2 jschds dvbfvgdf vbegv xfgvbdf bbff rfbfb fbrb fdfvdbgf fddfgfdg fdgdfgdfg dfgdfgdfg fdgdfgdfgd fdgdfgdfg dfgdfgdfgdf fdgdfgdfgfggdf
+      fdgdfgfgd fdgdfgdfg jschds dvbfvgdf vbegv xfgvbdf bbff rfbfb fbrb fdfvdbgf fddfgfdg fdgdfgdfg dfgdfgdfg fdgdfgdfgd fdgdfgdfg dfgdfgdfgdf fdgdfgdfgfggdf
+      fdgdfgfgd fdgdfgdfg jschds dvbfvgdf vbegv xfgvbdf bbff rfbfb fbrb fdfvdbgf fddfgfdg fdgdfgdfg dfgdfgdfg fdgdfgdfgd fdgdfgdfg dfgdfgdfgdf fdgdfgdfgfggdf
+      fdgdfgfgd fdgdfgdfg jschds dvbfvgdf vbegv xfgvbdf bbff rfbfb fbrb fdfvdbgf fddfgfdg fdgdfgdfg dfgdfgdfg fdgdfgdfgd fdgdfgdfg dfgdfgdfgdf fdgdfgdfgfggdf
+      fdgdfdfgdfgjschds dvbfvgdf vbegv xfgvbdf bbff rfbfb fbrb fdfvdbgf fddfgfdg fdgdfgdfg dfgdfgdfg fdgdfgdfgd fdgdfgdfg dfgdfgdfgdf fdgdfgdfgfggdf
+      fdgdfgfgd fdgdfgdfg
+    </p>
+  </div>
+</div> -->
+
+  
+
+  <!-- <div class="box" id="container" >
+    <div class=" col-12 col-sm-6 col-md-4 col-lg-3 " *ngFor="let dish of dishes">
+      <div
+        class="masonry card my-3 bg-dark text-light"
+        *ngIf="dish.id % 2 == 0"
+        style="height: 500px;"
+      >
+        <div class="card-img-caption">
+          <p class="card-text">
+            <span
+              class="badge badge-dark p-2"
+              style="
+                font-size: 15px;
+                font-variant: small-caps;
+                letter-spacing: 2px;
+              "
+              >{{ dish.category }}</span
+            >
+          </p>
+          <img
+            src="{{ dish.image }}"
+            class="card-img-top card-img"
+            alt="{{ dish.name }}"
+            height="200px"
+          />
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-9">
+              <h5 class="card-title mb-1" [ngClass]="{ sss: myBool }">
+                {{ dish.name }}
+              </h5>
+              <p class="card-text">
+                <img src="../assets/Icons/Icon feather-clock.png" alt="Clock" />
+                &nbsp;{{ dish.price }} {{ dish.label }}
+              </p>
+            </div>
+            <div class="col-3">
+              <img
+                src="../assets/Icons/Icon feather-heart.png"
+                alt="Unlike"
+                on-click="changeLiked(dish.id)"
+                *ngIf="!dish.liked"
+              />
+              <img
+                src="../assets/Icons/Icon feather-heart-color.png"
+                alt="Like"
+                on-click="changeLiked(dish.id)"
+                *ngIf="dish.liked"
+              />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 text-center">
+              <p class="card-text">{{ dish.description }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="middle text-center">
+          <button
+            class="btn btn-outline-dark text-light my-2"
+            [routerLink]="['/view', dish.id]"
+          >
+            View More
+          </button>
+          <button
+            class="btn btn-outline-dark text-light my-2"
+            (click)="openDish(dish.id)"
+          >
+            Quick View
+          </button>
+        </div>
+      </div>
+      <div
+        class="masonry card bg-light text-dark my-3"
+        *ngIf="dish.id % 2 != 0"
+        style="height: 400px;"
+      >
+        <div class="card-img-caption">
+          <p class="card-text">
+            <span
+              class="badge badge-dark p-2"
+              style="
+                font-size: 15px;
+                font-variant: small-caps;
+                letter-spacing: 2px;
+              "
+              >{{ dish.category }}</span
+            >
+          </p>
+          <img
+            src="{{ dish.image }}"
+            class="card-img-top"
+            alt="{{ dish.name }}"
+            height="200px"
+          />
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-9">
+              <h5 class="card-title mb-1" [ngClass]="{ sss: myBool }">
+                {{ dish.name }}
+              </h5>
+              <p class="card-text">
+                <img src="../assets/Icons/Icon feather-clock.png" alt="Clock" />
+                &nbsp;{{ dish.price }}
+              </p>
+            </div>
+            <div class="col-3">
+              <img
+                src="../assets/Icons/Icon feather-heart.png"
+                alt="Unlike"
+                on-click="changeLiked(dish.id)"
+                *ngIf="!dish.liked"
+              />
+              <img
+                src="../assets/Icons/Icon feather-heart-color.png"
+                alt="Like"
+                on-click="changeLiked(dish.id)"
+                *ngIf="dish.liked"
+              />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 text-center">
+              <p class="card-text">{{ dish.description }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="middle text-center">
+          <button
+            class="btn btn-outline-dark text-light my-2"
+            [routerLink]="['/view', dish.id]"
+          >
+            View More
+          </button>
+          <button
+            class="btn btn-outline-dark text-light my-2"
+            (click)="openDish(dish.id)"
+          >
+            Quick View
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
